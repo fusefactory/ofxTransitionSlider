@@ -43,7 +43,6 @@ void ofxTransitionSlider<Type>::update(float _transitionDuration){
     if(bTransition && abs(value - finalValue) == 0){
         bTransition = false;
         ofxSlider.setFillColor(ofColor(127,127,127));
-        ofxSlider = finalValue;
     }
     
     if(bTransition){
@@ -56,6 +55,9 @@ void ofxTransitionSlider<Type>::update(float _transitionDuration){
         if(transition == 1.0) value = finalValue;
         
         if(bDrawSliderDuringTransition)ofxSlider = value;
+    }
+    else{
+        value = ofxSlider;
     }
 }
 
