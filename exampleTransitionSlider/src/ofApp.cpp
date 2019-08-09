@@ -11,11 +11,11 @@ void ofApp::setup(){
     transitionIntSlider.setDrawSliderDuringTransition(false);
     
     //set duration of the transition
-    transitionIntSlider.setTransitionDuration(0);
+    transitionIntSlider.setTransitionDuration(5000);
 }
 
 //--------------------------------------------------------------
-void ofApp::update(){    
+void ofApp::update(){
     transitionFloatSlider.update();
     transitionIntSlider.update();
 }

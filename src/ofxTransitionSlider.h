@@ -21,10 +21,10 @@ public:
     
     ofxBaseGui * setup(std::string _name, Type _value, Type _min, Type _max);
     Type getValue(){return value;};
-    void update();
+    void update(int _transitionDuration = -1.0);
     
     void setChangingColor(ofColor color){changingColor = color;}                //color during transition
-    void setTransitionDuration(float duration){durationTransition = duration;}   //duration of transition
+    void setTransitionDuration(int duration){if(duration >= 0) durationTransition = duration;}   //duration of transition in ms
     void setDrawSliderDuringTransition(bool show){bDrawSliderDuringTransition = show;}
 
 protected:
@@ -33,7 +33,7 @@ protected:
     Type startValue;
     Type finalValue;
     float value;
-    float durationTransition = 2000;
+    int durationTransition = 2000;
     bool bTransition;
     bool bDrawSliderDuringTransition = true;
     ofColor changingColor;

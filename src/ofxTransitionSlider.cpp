@@ -26,7 +26,10 @@ ofxTransitionSlider<Type>::operator const float & (){
 }
 
 template<typename Type>
-void ofxTransitionSlider<Type>::update(){
+void ofxTransitionSlider<Type>::update(int _transitionDuration){
+    
+    if (_transitionDuration >= 0) setTransitionDuration(_transitionDuration);
+    
     if(! bTransition && ofxSlider != finalValue) {
         if (durationTransition > 0){
             bTransition = true;
@@ -35,21 +38,20 @@ void ofxTransitionSlider<Type>::update(){
             ofxSlider.setFillColor(changingColor);
             changedTime = ofGetSystemTimeMillis();
         }
-        else{
-            startValue = ofxSlider;
-            finalValue = ofxSlider;
-        }
     }
     
     if(bTransition && abs(value - finalValue) == 0){
         bTransition = false;
         ofxSlider.setFillColor(ofColor(127,127,127));
+        ofxSlider = finalValue;
     }
     
     if(bTransition){
         uint64_t curTime = ofGetSystemTimeMillis();
-        float transition =  ofMap(curTime, changedTime, changedTime + durationTransition, 0, 1, true);
-        value = (Type) ofMap(transition, 0, 1, startValue, finalValue, true);
+        uint64_t endTime = changedTime + durationTransition;
+        float transition =  ofMap(curTime, changedTime, endTime, 0.0, 1.0, true);
+        if(curTime >= endTime) transition = 1.0;
+        value = (Type) ofMap(transition, 0.0, 1.0, startValue, finalValue, true);
         if(bDrawSliderDuringTransition)ofxSlider = value;
     }
 }
