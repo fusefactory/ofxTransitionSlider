@@ -26,6 +26,7 @@ public:
     void setChangingColor(ofColor color){changingColor = color;}                //color during transition
     void setTransitionDuration(float duration){if(duration >= 0) durationTransition = duration;}   //duration of transition in ms
     void setDrawSliderDuringTransition(bool show){bDrawSliderDuringTransition = show;}
+	ofxSlider<Type> &getSlider() { return ofxSlider; }
 
 protected:
     ofxSlider<Type> ofxSlider;
