@@ -22,7 +22,7 @@ public:
     ofxBaseGui * setup(std::string _name, Type _value, Type _min, Type _max);
     Type getValue(){return value;};
     void update(float _transitionDuration = -1.0);
-    
+	void jumpToFinalValue();
     void setChangingColor(ofColor color){changingColor = color;}                //color during transition
     void setTransitionDuration(float duration){if(duration >= 0) durationTransition = duration;}   //duration of transition in ms
     void setDrawSliderDuringTransition(bool show){bDrawSliderDuringTransition = show;}
