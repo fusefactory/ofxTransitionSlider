@@ -41,8 +41,8 @@ protected:
     uint64_t changedTime;
 };
 
-typedef ofxTransitionSlider<float> TransitionFloatSlider;
-typedef ofxTransitionSlider<int> TransitionIntSlider;
+typedef ofxTransitionSlider<float> ofxTransitionFloatSlider;
+typedef ofxTransitionSlider<int> ofxTransitionIntSlider;
 
 
 #endif /* TransitionSlider_hpp */
