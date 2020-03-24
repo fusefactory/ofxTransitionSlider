@@ -24,6 +24,7 @@ public:
     void update(float _transitionDuration = -1.0);
 	void jumpToFinalValue();
     void setChangingColor(ofColor color){changingColor = color;}                //color during transition
+    void setDefaultColor(ofColor color){defaultFillColor = color;}
     void setTransitionDuration(float duration){if(duration >= 0) durationTransition = duration;}   //duration of transition in ms
     void setDrawSliderDuringTransition(bool show){bDrawSliderDuringTransition = show;}
 	ofxSlider<Type> &getSlider() { return ofxSlider; }
@@ -37,7 +38,8 @@ protected:
     float durationTransition = 2000;
     bool bTransition;
     bool bDrawSliderDuringTransition = true;
-    ofColor changingColor;
+    ofColor changingColor = ofColor(64, 64, 255);
+    ofColor defaultFillColor = ofColor(128);
     uint64_t changedTime;
 };
 

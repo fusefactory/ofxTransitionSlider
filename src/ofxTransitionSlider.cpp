@@ -9,14 +9,13 @@
 
 template<typename Type>
 ofxTransitionSlider<Type>::ofxTransitionSlider(){
-    changingColor = ofColor(64, 64, 255);
 }
 
 template<typename Type>
 ofxBaseGui * ofxTransitionSlider<Type>::setup(std::string _name, Type _value, Type _min, Type _max){
     startValue = _value;
     finalValue = _value;
-    ofxSlider.setFillColor(ofColor(127,127,127));
+    ofxSlider.setFillColor(defaultFillColor);
     return ofxSlider.setup(_name, _value, _min, _max);
 }
 
@@ -42,7 +41,7 @@ void ofxTransitionSlider<Type>::update(float _transitionDuration){
     
     if(bTransition && abs(value - finalValue) == 0){
         bTransition = false;
-        ofxSlider.setFillColor(ofColor(127,127,127));
+        ofxSlider.setFillColor(defaultFillColor);
     }
     
     if(bTransition){
@@ -66,7 +65,7 @@ void ofxTransitionSlider<Type>::jumpToFinalValue() {
 	bTransition = false;
 	startValue = ofxSlider;
 	finalValue = ofxSlider;
-	ofxSlider.setFillColor(ofColor(127, 127, 127));
+	ofxSlider.setFillColor(defaultFillColor);
 }
 
 
