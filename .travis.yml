@@ -132,17 +132,17 @@ install:
   - if [ -f scripts/ci/$TARGET/install.sh ]; then
         scripts/ci/$TARGET/install.sh;
     fi
-  - if [ "$TARGET" == "linux64" ]; then
-        scripts/linux/download_libs.sh -a 64gcc4;
-    elif [ "$TARGET" == "linuxarmv6l" ]; then
-        scripts/linux/download_libs.sh -a armv6l;
-    elif [ "$TARGET" == "linuxarmv7l" ]; then
-        scripts/linux/download_libs.sh -a armv7l;
-    elif [ "$TARGET" == "tvos" ]; then
-        scripts/ios/download_libs.sh;
-    else
-        scripts/$TARGET/download_libs.sh;
-    fi
+  # - if [ "$TARGET" == "linux64" ]; then
+  #       scripts/linux/download_libs.sh -a 64gcc4;
+  #   elif [ "$TARGET" == "linuxarmv6l" ]; then
+  #       scripts/linux/download_libs.sh -a armv6l;
+  #   elif [ "$TARGET" == "linuxarmv7l" ]; then
+  #       scripts/linux/download_libs.sh -a armv7l;
+  #   elif [ "$TARGET" == "tvos" ]; then
+  #       scripts/ios/download_libs.sh;
+  #   else
+  #       scripts/$TARGET/download_libs.sh;
+  #   fi
 
 
 script:
