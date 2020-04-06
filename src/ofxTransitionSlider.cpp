@@ -65,9 +65,9 @@ void ofxTransitionSlider<Type>::jumpToFinalValue() {
 	bTransition = false;
 	startValue = ofxSlider;
 	finalValue = ofxSlider;
+    value = ofxSlider;
 	ofxSlider.setFillColor(defaultFillColor);
 }
-
 
 template class ofxTransitionSlider<int8_t>;
 template class ofxTransitionSlider<uint8_t>;
