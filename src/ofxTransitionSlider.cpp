@@ -27,7 +27,9 @@ ofxTransitionSlider<Type>::operator const float & (){
 template<typename Type>
 void ofxTransitionSlider<Type>::update(float _transitionDuration){
     
-    if (_transitionDuration >= 0) setTransitionDuration(_transitionDuration);
+    if (_transitionDuration >= 0) {
+        setTransitionDuration(_transitionDuration);
+    }
     
     if(! bTransition && ofxSlider != finalValue) {
         if (durationTransition > 0){
@@ -61,12 +63,23 @@ void ofxTransitionSlider<Type>::update(float _transitionDuration){
 }
 
 template<typename Type>
+
 void ofxTransitionSlider<Type>::jumpToFinalValue() {
 	bTransition = false;
 	startValue = ofxSlider;
 	finalValue = ofxSlider;
     value = ofxSlider;
 	ofxSlider.setFillColor(defaultFillColor);
+}
+
+template<typename Type>
+void ofxTransitionSlider<Type>::stopTransition() {
+    if (bTransition) {
+        bTransition = false;
+        ofxSlider = value;
+        finalValue = value;
+        ofxSlider.setFillColor(defaultFillColor);
+    }
 }
 
 template class ofxTransitionSlider<int8_t>;

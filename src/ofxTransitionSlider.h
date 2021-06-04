@@ -27,6 +27,7 @@ public:
     void setDefaultColor(ofColor color){defaultFillColor = color;}
     void setTransitionDuration(float duration){if(duration >= 0) durationTransition = duration;}   //duration of transition in ms
     void setDrawSliderDuringTransition(bool show){bDrawSliderDuringTransition = show;}
+    void stopTransition();                                                                         // it stop the transition to the current value
 	ofxSlider<Type> &getSlider() { return ofxSlider; }
 
 protected:
