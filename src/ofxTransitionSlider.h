@@ -15,6 +15,7 @@ template<typename Type>
 class ofxTransitionSlider{
 
 public:
+    double operator=(Type v);
     operator const float & ();
     
     ofxTransitionSlider();

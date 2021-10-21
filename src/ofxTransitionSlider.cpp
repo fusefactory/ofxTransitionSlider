@@ -20,6 +20,12 @@ ofxBaseGui * ofxTransitionSlider<Type>::setup(std::string _name, Type _value, Ty
 }
 
 template<typename Type>
+double ofxTransitionSlider<Type>::operator=(Type v){
+    ofxSlider = v;
+    return v;
+}
+
+template<typename Type>
 ofxTransitionSlider<Type>::operator const float & (){
     return value;
 }
