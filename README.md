@@ -7,3 +7,4 @@ OpenFrameworks addon based on ofxSlider (from ofxGui) that implement transitions
 See the examples:
 
 - exampleTransitionSlider
+- exampleTransitionSliderFrameBased
