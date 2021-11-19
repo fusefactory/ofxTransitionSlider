@@ -16,6 +16,7 @@ ofxBaseGui * ofxTransitionSlider<Type>::setup(std::string _name, Type _value, Ty
     startValue = _value;
     finalValue = _value;
     ofxSlider.setFillColor(defaultFillColor);
+    
     return ofxSlider.setup(_name, _value, _min, _max);
 }
 
@@ -44,6 +45,7 @@ void ofxTransitionSlider<Type>::update(float _transitionDuration){
             finalValue = ofxSlider;
             ofxSlider.setFillColor(changingColor);
             changedTime = ofGetSystemTimeMillis();
+            frameCounter = 0;
         }
     }
     
@@ -53,13 +55,31 @@ void ofxTransitionSlider<Type>::update(float _transitionDuration){
     }
     
     if(bTransition){
-        uint64_t curTime = ofGetSystemTimeMillis();
-        uint64_t endTime = changedTime + durationTransition;
-        float transition =  ofMap(curTime, changedTime, endTime, 0.0, 1.0, true);
-        if(curTime >= endTime) transition = 1.0;
+        float transition = 0;
         
-        value = (Type) ofMap(transition, 0.0, 1.0, startValue, finalValue, true);
-        if(transition == 1.0) value = finalValue;
+        //time based transition
+        if(bTransitionTimeBased){
+            uint64_t curTime = ofGetSystemTimeMillis();
+            uint64_t endTime = changedTime + durationTransition;
+            float transition =  ofMap(curTime, changedTime, endTime, 0.0, 1.0, true);
+            if(curTime >= endTime) transition = 1.0;
+            value = (Type) ofMap(transition, 0.0, 1.0, startValue, finalValue, true);
+
+            if(transition == 1.0) value = finalValue;
+        }
+        //frame based transition
+        else{
+            int durationTransitionFrame = (durationTransition / 1000.0f * framerateReference);
+            
+            float updateIncrement = (finalValue - startValue) / durationTransitionFrame;
+            float newValue = value + updateIncrement;
+            value = (Type) newValue;
+            
+            frameCounter ++;
+            if (frameCounter >= durationTransitionFrame) {
+                value = finalValue;
+            }
+        }
         
         if(bDrawSliderDuringTransition)ofxSlider = value;
     }
