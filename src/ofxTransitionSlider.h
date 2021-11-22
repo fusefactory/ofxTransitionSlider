@@ -44,7 +44,7 @@ protected:
     float durationTransition = 2000;
     bool bTransition;
     int framerateReference = 60.0f;                                //fps to generate a transition not time base, but frames based
-    bool bTransitionTimeBased;                                     //if true the transition is time based, if false is frame based
+    bool bTransitionTimeBased = true;                                     //if true the transition is time based, if false is frame based
     bool bDrawSliderDuringTransition = true;
     ofColor changingColor = ofColor(64, 64, 255);
     ofColor defaultFillColor = ofColor(128);
