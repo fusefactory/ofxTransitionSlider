@@ -23,7 +23,8 @@ public:
     ofxBaseGui * setup(std::string _name, Type _value, Type _min, Type _max);
     Type getValue(){return value;};
     void update(float _transitionDuration = -1.0);
-	void jumpToFinalValue();
+	void jumpToFinalValue();                                            //stop the transition and jump to finalValue
+    void jumpToValue(Type final_value);                                 //stop the transition andh jump to this (final_value) value
     void setChangingColor(ofColor color){changingColor = color;}                //color during transition
     void setDefaultColor(ofColor color){defaultFillColor = color;}
     void setTransitionDuration(float duration){if(duration >= 0) durationTransition = duration;}   //duration of transition in ms
