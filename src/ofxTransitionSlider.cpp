@@ -96,7 +96,7 @@ void ofxTransitionSlider<Type>::jumpToFinalValue() {
 template<typename Type>
 void ofxTransitionSlider<Type>::jumpToValue(Type final_value) {
     bTransition = false;
-    ofxSlider = final_value;
+    if(final_value != ofxSlider)  ofxSlider = final_value;
     startValue = ofxSlider;
     finalValue = ofxSlider;
     value = ofxSlider;
