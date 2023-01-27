@@ -21,7 +21,8 @@ public:
     ofxTransitionSlider();
     
     ofxBaseGui * setup(std::string _name, Type _value, Type _min, Type _max);
-    Type getValue(){return value;};
+    Type getValue() { return value; };
+    float getTransitionPct(){return transitionPct; };
     void update(float _transitionDuration = -1.0);
 	void jumpToFinalValue();                                            //stop the transition and jump to finalValue
     void jumpToValue(Type final_value);                                 //stop the transition andh jump to this (final_value) value
@@ -31,7 +32,8 @@ public:
     void setDrawSliderDuringTransition(bool show){bDrawSliderDuringTransition = show;}
     void setFramerateReference(int framerate){framerateReference = framerate;}
     void setTransitionTimeBased(bool transitionTimeBased){bTransitionTimeBased = transitionTimeBased;}
-    void stopTransition();                                                                                 // it stop the transition to the current value
+    void stopTransition();    // it stop the transition to the current value
+
     
     bool isTransitionTimeBased() {return bTransitionTimeBased;}
 	ofxSlider<Type> &getSlider() { return ofxSlider; }
@@ -42,6 +44,7 @@ protected:
     Type startValue;
     Type finalValue;
     float value;
+    float transitionPct;
     float durationTransition = 2000;
     bool bTransition;
     int framerateReference = 60.0f;                                //fps to generate a transition not time base, but frames based

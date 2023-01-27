@@ -15,6 +15,7 @@ template<typename Type>
 ofxBaseGui * ofxTransitionSlider<Type>::setup(std::string _name, Type _value, Type _min, Type _max){
     startValue = _value;
     finalValue = _value;
+    transitionPct = 0;
     ofxSlider.setFillColor(defaultFillColor);
     
     return ofxSlider.setup(_name, _value, _min, _max);
@@ -66,6 +67,7 @@ void ofxTransitionSlider<Type>::update(float _transitionDuration){
             value = (Type) ofMap(transition, 0.0, 1.0, startValue, finalValue, true);
 
             if(transition == 1.0) value = finalValue;
+            transitionPct = float(value);
         }
         //frame based transition
         else{
@@ -74,8 +76,10 @@ void ofxTransitionSlider<Type>::update(float _transitionDuration){
             float updateIncrement = (finalValue - startValue) / durationTransitionFrame;
             float newValue = value + updateIncrement;
             value = (Type) newValue;
+        
             
             frameCounter ++;
+            transitionPct = float(frameCounter) /float( durationTransitionFrame);
             if (frameCounter >= durationTransitionFrame) {
                 value = finalValue;
             }
